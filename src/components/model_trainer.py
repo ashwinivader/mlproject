@@ -13,10 +13,8 @@ from sklearn.metrics import r2_score
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
-
 from src.exception import CustomException
 from src.logger import logging
-
 from src.utils import save_object,evaluate_models
 
 @dataclass
@@ -105,15 +103,11 @@ class ModelTrainer:
                 file_path=self.model_trainer_config.trained_model_file_path,
                 obj=best_model
             )
-
+            logging.info("Best model")
+            logging.info(best_model)
             predicted=best_model.predict(X_test)
 
             r2_square = r2_score(y_test, predicted)
-            return r2_square
-            
-
-
-
-            
+            return r2_square          
         except Exception as e:
             raise CustomException(e,sys)

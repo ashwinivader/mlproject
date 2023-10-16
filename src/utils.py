@@ -6,6 +6,7 @@ import dill
 import pickle
 from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
+from src.logger import logging
 
 from src.exception import CustomException
 
@@ -44,6 +45,10 @@ def evaluate_models(X_train, y_train,X_test,y_test,models,param):
             train_model_score = r2_score(y_train, y_train_pred)
 
             test_model_score = r2_score(y_test, y_test_pred)
+
+            logging.info(model)
+            logging.info(train_model_score)
+            logging.info(test_model_score)
 
             report[list(models.keys())[i]] = test_model_score
 
