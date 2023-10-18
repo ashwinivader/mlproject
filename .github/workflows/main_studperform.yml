@@ -19,6 +19,8 @@ jobs:
 
       - name: Set up Python version
         uses: actions/setup-python@v2
+        env: 
+            NODE: 16
         with:
           python-version: '3.8'
 
